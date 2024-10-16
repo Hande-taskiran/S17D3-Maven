@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(ResultAnalyzer.class)
+@ExtendWith(com.workintech.s17d2.ResultAnalyzer.class)
 class MainTest {
 
 
@@ -44,8 +44,8 @@ class MainTest {
     @BeforeEach
     void setup() {
 
-        kangaroo = new Kangaroo(1, "Kenny", 2.0, 85.0, "Male", false);
-        koala = new Koala(1, "Kara", 20.0, 15.0, "Female");
+        kangaroo = new Kangaroo(1L, "Kenny", 2.0, 85.0, "Male", false);
+        koala = new Koala(1L, "Kara", 20.0, 15, "Female");
 
     }
 
@@ -53,7 +53,7 @@ class MainTest {
     @DisplayName("Test Kangaroo Creation and Field Access")
      void testKangarooCreationAndFieldAccess() {
 
-        Kangaroo kangaroo = new Kangaroo(1, "Kenny", 2.0, 85.0, "Male", false);
+        Kangaroo kangaroo = new Kangaroo(1L, "Kenny", 2.0, 85.0, "Male", false);
 
 
         assertEquals(1, kangaroo.getId());
@@ -69,7 +69,7 @@ class MainTest {
     void testKangarooSetters() {
 
         Kangaroo kangaroo = new Kangaroo();
-        kangaroo.setId(2);
+        kangaroo.setId(2L);
         kangaroo.setName("Kanga");
         kangaroo.setHeight(1.8);
         kangaroo.setWeight(70.0);
@@ -89,7 +89,7 @@ class MainTest {
     @DisplayName("Test Koala AllArgsConstructor")
     void testKoalaAllArgsConstructor() {
         // Creating an instance using all-args constructor
-        Koala koala = new Koala(1, "Kara", 20.0, 15.0, "Female");
+        Koala koala = new Koala(1L, "Kara", 15.0, 20, "Female");
 
         // Assertions to ensure fields are set correctly
         assertEquals(1, koala.getId());
@@ -104,9 +104,9 @@ class MainTest {
     void testKoalaSettersAndGetters() {
         // Creating an instance using no-args constructor
         Koala koala = new Koala();
-        koala.setId(2);
+        koala.setId(2L);
         koala.setName("Kody");
-        koala.setSleepHour(22.0);
+        koala.setSleepHour(22);
         koala.setWeight(12.5);
         koala.setGender("Male");
 
@@ -140,7 +140,7 @@ class MainTest {
         long now = System.currentTimeMillis();
 
 
-        ZooErrorResponse errorResponse = new ZooErrorResponse(404, "Not Found", now);
+        ZooErrorResponse errorResponse = new ZooErrorResponse("Not Found", 404, now);
 
 
         assertEquals(404, errorResponse.getStatus());
